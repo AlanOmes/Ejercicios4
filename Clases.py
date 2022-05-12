@@ -73,7 +73,7 @@ print(persona.nombre)
 
 #  retirar(cantidad): se retira una cantidad a la cuenta. La cuenta puede estar en números rojos.
 
-
+'''
 
 class Cuenta:
 
@@ -114,35 +114,112 @@ class Cuenta:
             self.__cantidad -= cantidad
         return f'Cantidad de dinero: ${self.cantidad}'
 
-alan = Cuenta('Alan Omes')
-alan.cantidad = 500
+alan = Cuenta('Alan Omes', 10000)
 
-#num = 1
-# while num != 0:
+
+
+num = 1
+while num != 0:
     
-#     print('\nBIENVENIDO. SELECCIONE LA OPCIÓN QUE DESEE REALIZAR:\r\n ')
-#     print('1) Mostrar datos de la cuenta\n2) Ingresar dinero\n3) Retirar dinero\n4) Finalizar\n')
-#     opcion = int(input('Opción: '))
+    print('\nBIENVENIDO. SELECCIONE LA OPCIÓN QUE DESEE REALIZAR:\r\n ')
+    print('1) Mostrar datos de la cuenta\n2) Ingresar dinero\n3) Retirar dinero\n4) Finalizar\n')
+    opcion = int(input('Opción: '))
 
-#     print('\r')
+    print('\r')
 
-#     if opcion == 1:
-#         print(alan.mostrar())
-#     elif opcion == 2:
-#         cant = input('Cantidad de dinero que quiere ingresar: ')
-#         print(alan.ingresar(cant))
-#     elif opcion == 3:
-#         cant = input('Cantidad de dinero que quiere retiar: ')
-#         print(alan.retirar(cant))
-#     elif opcion == 4:
-#         print('Programa finalizado. Muchas gracias.')
-#         num = 0
-#     else:
-#         print('Opción incorrecta. Por favor, intentelo nuevamente.')
+    if opcion == 1:
+        print(alan.mostrar())
+    elif opcion == 2:
+        cant = input('Cantidad de dinero que quiere ingresar: ')
+        print(alan.ingresar(cant))
+    elif opcion == 3:
+        cant = input('Cantidad de dinero que quiere retiar: ')
+        print(alan.retirar(cant))
+    elif opcion == 4:
+        print('Programa finalizado. Muchas gracias.')
+        num = 0
+    else:
+        print('Opción incorrecta. Por favor, intentelo nuevamente.')
     
+'''
 
+# Vamos a definir ahora una “Cuenta Joven”, para ello vamos a crear una nueva clase CuentaJoven que deriva de la anterior. Cuando se crea esta nueva clase, además del titular y la cantidad se debe guardar una bonificación que estará expresada en tanto por ciento. Construye los siguientes métodos para la clase:
 
+#  Un constructor.
 
+#  Los setters y getters para el nuevo atributo.
 
+#  En esta ocasión los titulares de este tipo de cuenta tienen que ser mayor de edad., por lo tanto hay que crear un método esTitularValido() que devuelve verdadero si el titular es mayor de edad pero menor de 25 años y falso en caso contrario.
 
+#  Además la retirada de dinero sólo se podrá hacer si el titular es válido.
 
+#  El método mostrar() debe devolver el mensaje de “Cuenta Joven” y la bonificación de la cuenta.
+
+# Piensa los métodos heredados de la clase madre que hay que reescribir.
+
+'''
+
+class CuentaJoven(Cuenta):
+
+    def __init__(self, nombre, cantidad, bonificacion):
+        super().__init__(nombre, cantidad)
+        self.bonificacion = bonificacion
+    
+    @property
+    def bonificacion(self):
+        return self.__bonificacion
+    
+    @bonificacion.setter
+    def bonificacion(self, bonificacion):
+        self.__bonificacion = bonificacion
+    
+    def esTitularValido(self, edad):
+        if edad >= 18 and edad <= 25:
+            return True
+        return False
+
+    def retirar(self, valido):
+        cant = int(input('Cantidad de dinero que quiere retiar: '))
+        if valido == True:
+            return super().retirar(cant)
+        else:
+            return 'Para retirar dinero debe ser titular válido.'
+    
+    def mostrar(self):
+        c_total = self.bonificacion * self.cantidad / 100
+        return f'Cuenta joven: ${c_total}'
+
+joven = CuentaJoven('Alan', 10000, 50)
+
+#print(joven.retirar(joven.esTitularValido(19)))
+print(joven.mostrar())
+
+joven.bonificacion = 20
+print(joven.mostrar())
+
+'''
+
+# Realice un programa que cree un objeto persona con datos leídos desde teclado. Luego muestre en consola la representación de ese objeto en formato string.
+
+'''
+
+class Persona:
+
+    def __init__(self, nombre, dni, edad):
+        self.nombre = nombre
+        self.dni = dni
+        self.edad = edad
+
+    def mostrar(self):
+        return f'Mi nombre es {self.nombre}, mi DNI es {self.dni} y tengo {self.edad} años.'
+
+nombre = input('Ingrese su nombre: ')
+dni = input('Ingrese su número de DNI: ')
+edad = input('Ingrese su edad: ')
+
+persona = Persona(nombre, dni, edad)
+print(persona.mostrar())
+
+'''
+
+# 
