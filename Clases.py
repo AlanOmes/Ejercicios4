@@ -222,4 +222,74 @@ print(persona.mostrar())
 
 '''
 
-# 
+# Realizar un programa que conste de una clase llamada Alumno que tenga como atributos el nombre y la nota del alumno. Definir los métodos para inicializar sus atributos, imprimirlos y mostrar un mensaje con el resultado de la nota y si ha aprobado o no.
+
+'''
+
+class Alumno:
+
+    def __init__(self, nombre, nota):
+        self.nombre = nombre
+        self.nota = nota
+    
+    def mostrar(self):
+        print(f'Nombre: {self.nombre} Nota: {self.nota}')
+        
+        if self.nota >= 6:
+            return 'MATERIA APROBADA'
+        return 'MATERIA DESAPROBADA'
+
+alumno = Alumno('Alan', 8)
+print(alumno.mostrar())
+
+'''
+
+# Desarrollar un programa que cargue los datos de un triángulo. Implementar una clase con los métodos para inicializar los atributos, imprimir el valor del lado con un tamaño mayor y  el tipo de triángulo que es (equilátero, isósceles o escaleno).
+
+'''
+
+class Triangulo:
+
+    def __init__(self, lado1, lado2, lado3):
+        self.lado1 = lado1
+        self.lado2 = lado2
+        self.lado3 = lado3
+    
+    def mayorLado(self):
+        lista = [self.lado1, self.lado2, self.lado3]
+        maxx = -9999
+        for num in lista:
+            if num > maxx:
+                maxx = num
+        return f'El lado más largo mide {maxx}cm.'
+    
+    def tipoDeTriangulo(self):
+        if self.lado1 == self.lado2 and self.lado1 == self.lado3:
+            return 'Es un triángulo equilátero'
+        elif self.lado1 == self.lado2 or self.lado1 == self.lado3 or self.lado2 == self.lado3:
+            return 'Es un triángulo isóceles'
+        else:
+            return 'Es un triángulo escaleno.'
+
+triangulo = Triangulo(5, 5, 5)
+print(triangulo.mayorLado())
+print(triangulo.tipoDeTriangulo())
+
+'''
+
+# Realizar una clase que administre una agenda. Se debe almacenar para cada contacto el nombre, el teléfono y el email. Además deberá mostrar un menú con las siguientes opciones
+
+#  Añadir contacto
+#  Lista de contactos
+#  Buscar contacto
+#  Editar contacto
+#  Cerrar agenda
+
+class Agenda:
+
+    def __init__(self):
+        self.nombre = input('Nombre del contacto: ')
+        self.telefono = input('Teléfono del contacto: ')
+        self.mail = input('Mail del contacto: ')
+    
+    
