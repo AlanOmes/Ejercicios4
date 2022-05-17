@@ -277,7 +277,7 @@ print(triangulo.tipoDeTriangulo())
 
 '''
 
-# Realizar una clase que administre una agenda. Se debe almacenar para cada contacto el nombre, el teléfono y el email. Además deberá mostrar un menú con las siguientes opciones
+# Realizar una clase que administre una agenda. Se debe almacenar para cada contacto el nombre, el teléfono y el email. Además deberá mostrar un menú con las siguientes opciones:
 
 #  Añadir contacto
 #  Lista de contactos
@@ -285,11 +285,149 @@ print(triangulo.tipoDeTriangulo())
 #  Editar contacto
 #  Cerrar agenda
 
+# Resuelto con diccionario
+
+'''
+
+import time
+
 class Agenda:
 
     def __init__(self):
-        self.nombre = input('Nombre del contacto: ')
-        self.telefono = input('Teléfono del contacto: ')
-        self.mail = input('Mail del contacto: ')
+        self.contactos = []
+
+    def menu(self):
+        
+        cerrar = False
+        while cerrar != True:
+            print()
+            print('Agenda Personal\r\n')
+            print('1. Añadir Contacto\n2. Lista de Contactos\n3. Buscar Contacto\n4. Editar Contacto\n5. Cerrar Agenda')
+            opcion = int(input('\nIntroduzca la opción deseada: '))
+            if opcion == 1:
+                self.agregar()
+            elif opcion == 2:
+                self.mostrar()
+            elif opcion == 3:
+                self.buscar()
+            elif opcion == 4:
+                self.editar()
+            elif opcion == 5:
+                self.salir()
+                cerrar = True
+            else:
+                print('Opción incorrecta. Intentelo nuevamente.')
+
+    def agregar(self):
+        print('\nAñadir Nuevo Contacto\r')
+        nombre = input('\nNombre del contacto: ')
+        telefono = input('Teléfono del contacto: ')
+        mail = input('Mail del contacto: ') 
+        print('\nContacto agregado exitosamente.')
+        self.contactos.append({'Nombre': nombre, 'Telefono': telefono, 'Mail': mail})
     
+    def mostrar(self):
+        print('\nLista de Contactos\r\n')
+        if len(self.contactos) == 0:
+            print('No tiene ningún contacto.')
+        else:
+            for n in range(len(self.contactos)):
+                print(self.contactos[n]['Nombre']) 
     
+    def buscar(self):
+        print('\nBuscar Contacto\r\n')
+        c = input('Escriba el nombre del contacto: ')
+        for n in range(len(self.contactos)):
+            if c == self.contactos[n]['Nombre']:
+                print('\nDatos de contacto\r\n')
+                print('Nombre: ', self.contactos[n]['Nombre'])
+                print('Telefono: ', self.contactos[n]['Telefono'])
+                print('Mail: ', self.contactos[n]['Mail'])
+        
+    def editar(self):
+        c = input('Escriba el nombre del contacto: ')
+        print()
+        print('1. Nombre\n2. Telefono\n3. Mail\r\n')
+        opcion = int(input('Inroduzca la opción que desea editar: '))
+        for n in range(len(self.contactos)):
+            if c == self.contactos[n]['Nombre']:
+                if opcion == 1:
+                    nuevo = input('Nuevo Nombre: ')
+                    self.contactos[n]['Nombre'] = nuevo
+                    print('Nombre editado con éxito.')
+                elif opcion == 2:
+                    nuevo = input('Nuevo Numero: ')
+                    self.contactos[n]['Telefono'] = nuevo
+                    print('Número editado con éxito.')
+                elif opcion == 3:
+                    nuevo = input('Nuevo Mail: ')
+                    self.contactos[n]['Mail'] = nuevo
+                    print('Mail editado con éxito.')
+
+    def salir(self):
+        print('Saliendo de la agenda...')
+        time.sleep(1)
+        print('Agenda cerrada.')
+        
+agenda = Agenda()
+agenda.menu()
+
+'''
+
+# Resuelto con listas
+
+class Contacto:
+    
+    def __init__(self, nombre, telefono, mail):
+        self.__nombre = nombre
+        self.__telefono = telefono
+        self.__mail = mail
+
+    @property
+    def nombre(self):
+        return self.__nombre
+    
+    @property
+    def telefono(self):
+        return self.__telefono
+
+    @property
+    def mail(self):
+        return self.__mail
+    
+    @nombre.setter
+    def nombre(self, nombre):
+        self.__nombre = nombre
+
+    @telefono.setter
+    def telefono(self, telefono):
+        self.__telefono = telefono
+
+    @mail.setter
+    def mail(self, mail):
+        self.__mail = mail  
+
+class Agenda:
+    
+    def __init__(self):
+        self.__contactos = []
+    
+    def agregar(self):
+        persona = Contacto('Alan','asdasda','asdasdsa')
+        self.__contactos.append(persona)
+       
+
+    def mostrar(self):
+        for i in range(len(self.__contactos)):
+            print('a')
+            print(self.contactos[i].nombre)
+
+   
+
+
+
+agenda = Agenda()
+
+print(agenda.mostrar)
+
+  
