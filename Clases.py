@@ -376,6 +376,8 @@ agenda.menu()
 
 # Resuelto con listas
 
+'''
+
 class Contacto:
     
     def __init__(self, nombre, telefono, mail):
@@ -422,12 +424,70 @@ class Agenda:
             print('a')
             print(self.contactos[i].nombre)
 
-   
-
-
-
 agenda = Agenda()
 
 print(agenda.mostrar)
 
-  
+'''
+
+# Utilizando la clase persona. Realice un programa que almacene en una lista 5 personas. La información de cada persona debe leerse de teclado. Luego de almacernar la información informe la cantidad de personas mayores de 65 años, muestre la representación de la persona con menor DNI.
+
+class Persona:
+
+    def __init__(self, nombre, dni, edad):
+        self.__nombre = nombre
+        self.__dni = dni
+        self.__edad = edad
+
+    @property
+    def nombre(self):
+        return self.__nombre
+
+    @property 
+    def dni(self):
+        return self.__dni
+    
+    @property
+    def edad(self):
+        return self.__edad
+
+    @nombre.setter
+    def nombre(self, nombre):
+        self.__nombre = nombre
+
+    @dni.setter
+    def dni(self, dni):
+        self.__dni = dni
+
+    @edad.setter
+    def edad(self, edad):
+        self.__edad = edad
+
+
+def mayores_de_65(personas):
+        mayores = 0
+        for i in range(len(personas)):
+            if personas[i].edad >= 65:
+                mayores += 1
+        return mayores
+    
+def menor_dni(personas):
+        minn = 9999999999
+        for dni in personas:
+            if dni < minn:
+                minn = dni
+        return minn
+
+nombre = input('Nombre de la persona: ')
+dni = int(input('DNI de la persona: '))
+edad = int(input('Edad de la persona: '))
+
+persona1 = Persona(nombre, dni, edad)
+persona2 = Persona(nombre, dni, edad)
+persona3 = Persona(nombre, dni, edad)
+persona4 = Persona(nombre, dni, edad)
+persona5 = Persona(nombre, dni, edad)
+
+p = [persona1, persona2, persona3, persona4, persona5]
+
+print(f'Cantidad de personas mayores de 65 años: {mayores_de_65(p)}')
